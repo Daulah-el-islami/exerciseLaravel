@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class PostController extends Controller
 {
@@ -24,6 +25,12 @@ class PostController extends Controller
         return view('posts.index', compact('posts'));
     }
     
+    public function pdf()
+    {
+        $posts = Post::all();
+        $pdf = PDF::loadView('posts.pdf', compact('posts'));
+        return $pdf->download('posts.pdf');
+    }
     public function view($code): View
     {
         $post = Post::findOrFail($code);

@@ -28,4 +28,5 @@ Route::get('/view/{code}', [PostController::class, 'view'])->name('posts.view');
 Route::get('/add', [PostController::class, 'add'])->name('posts.add');
 Route::get('/edit/{code}', [PostController::class, 'edit'])->name('posts.edit');
 Route::get('/login', [PostController::class, 'login'])->name('posts.login');
+Route::get('/pdf', [PostController::class, 'pdf'])->name('posts.pdf');
 
