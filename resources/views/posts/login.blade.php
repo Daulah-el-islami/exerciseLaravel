@@ -5,26 +5,37 @@
 @section('header-title', 'Login')
 
 @section('content')
-    <div class="col-md-6">
-        <div class="card border-0 shadow-sm rounded">
-            <div class="card-body">
-                <h3 class="text-center text-primary mb-4">Login</h3>
-                <form action="#" method="POST">
-                    @csrf
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Login</button>
-                </form>
+    <form method="POST" action="{{ route('login') }}">
+        @csrf
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Alamat Email" name="email" value="{{ old('email') }}" required>
+            @error('email')
+            <span class="error">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Kata Sandi</label>
+            <input type="password" class="form-control" id="password" placeholder="Kata Sandi" name="password" required>
+            @error('password')
+            <span class="error">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" {{ old('remember') ? 'checked' : '' }} name="remember" id="remember">
+                <label class="form-check-label" for="remember">
+                    Ingat Saya
+                </label>
             </div>
         </div>
-        <div class="text-center mt-3">
-            <a href="#">Lupa Password?</a>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Masuk</button>
+            atau
+            <a href="{{ route('profile.register') }}">Daftar</a>
         </div>
-    </div>
+    </form>
 @endsection

@@ -25,7 +25,7 @@ class PostController extends Controller
         return view('posts.index', compact('posts'));
     }
     
-    public function pdf()
+    public function generatePDF()
     {
         $posts = Post::all();
         $pdf = PDF::loadView('posts.pdf', compact('posts'));
